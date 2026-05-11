@@ -6,7 +6,7 @@ from sqlalchemy.sql import func
 from database import Base
 from enum import Enum
 
-class SplitType(enum):
+class SplitType(Enum):
     EQUAL = "equal"
     EXACT = "exact"
     PERCENTAGE = "percentage"
