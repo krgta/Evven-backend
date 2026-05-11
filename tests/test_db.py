@@ -1,11 +1,13 @@
-import asyncio
+import pytest
 from sqlalchemy import text
 
 from database import engine
 
-async def test():
-    async with engine.begin() as conn:
-        result = await conn.execute(text("SELECT 1"))
-        print(result.scalar())
 
-asyncio.run(test())
+@pytest.mark.anyio
+async def test_database_connection():
+    async with engine.begin() as conn:
+        result = await conn.execute(
+            text("SELECT 1")
+        )
+        assert result.scalar() == 1
