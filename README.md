@@ -4,6 +4,10 @@ and claude wrote it sooooo......🤞
 also backend is up on 
 [https://evenup-backend.onrender.com](https://evenup-backend.onrender.com)
 
+
+added an uptime bot and the results are on this 
+[Link](https://stats.uptimerobot.com/Fp6SnnG3zG)
+
 # Evenup — Backend API
 
 FastAPI backend for Evenup. Handles auth, expenses, group management, balance calculation, and debt settlement.
