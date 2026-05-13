@@ -8,7 +8,7 @@ from sqlalchemy import (  # type: ignore
 )
 
 from alembic import context
-from database import Base
+from core.database import Base
 
 config = context.config
 

@@ -5,7 +5,7 @@ from jose import JWTError, jwt  # type: ignore
 from passlib.context import CryptContext  # type: ignore
 from sqlalchemy.ext.asyncio import AsyncSession  # type: ignore
 
-from config import (
+from core.config import (
     ACCESS_TOKEN_EXPIRE_MINUTES,
     ALGORITHM,
     REFRESH_TOKEN_EXPIRE_DAYS,
@@ -15,6 +15,7 @@ from models.user import AuthProvider, User
 from repos.user_repository import UserRepository
 from schemas.auth import LoginResponse, RegisterResponse
 from schemas.user import TokenResponse, UserCreate, UserLogin
+from utils.user_utils import generate_user_code
 
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
@@ -84,9 +85,18 @@ async def register_user(user_data: UserCreate, db: AsyncSession) -> RegisterResp
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
 
+    while True:
+        code = generate_user_code()
+
+        existing = await repo.get_user_by_user_code(code)
+
+        if not existing:
+            break
+
     hashed_password = hash_password(user_data.password)
 
     new_user = User(
+        user_code=code,
         name=user_data.name,
         email=user_data.email,
         password_hash=hashed_password,

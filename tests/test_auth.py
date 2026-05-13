@@ -4,32 +4,32 @@ from services.auth_service import (
     create_access_token,
     create_refresh_token,
     decode_token,
-    password_hashing,
+    hash_password,
     verify_password,
 )
 
 
 def test_1_password_is_hashed():
     """Hash differs from plaintext."""
-    assert password_hashing("Jazz@123") != "Jazz@123"
+    assert hash_password("Jazz@123") != "Jazz@123"
 
 
 def test_2_correct_password_verifies():
     """Correct password passes verification."""
-    hashed = password_hashing("Jazz@123")
+    hashed = hash_password("Jazz@123")
     assert verify_password("Jazz@123", hashed) is True
 
 
 def test_3_wrong_password_fails():
     """Wrong password fails verification."""
-    hashed = password_hashing("Jazz@123")
+    hashed = hash_password("Jazz@123")
     assert verify_password("WrongPass!", hashed) is False
 
 
 def test_4_same_password_produces_different_hashes():
     """bcrypt salts mean two hashes of the same password differ."""
-    h1 = password_hashing("Jazz@123")
-    h2 = password_hashing("Jazz@123")
+    h1 = hash_password("Jazz@123")
+    h2 = hash_password("Jazz@123")
     assert h1 != h2
 
 

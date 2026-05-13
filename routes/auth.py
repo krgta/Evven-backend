@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status  # type: ignore
 from sqlalchemy.ext.asyncio import AsyncSession  # type: ignore
 
-from deps import get_current_user, get_db
+from core.deps import get_current_user, get_db
 from models.user import User
 from schemas.auth import LoginResponse, RegisterResponse
 from schemas.user import UserCreate, UserLogin, UserResponse

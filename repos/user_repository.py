@@ -39,3 +39,9 @@ class UserRepository:
     async def delete_user(self, user: User) -> None:
         await self.session.delete(user)
         await self.session.commit()
+
+    async def get_user_by_user_code(self, user_code: str) -> User | None:
+        result = await self.session.execute(
+            select(User).where(User.user_code == user_code)
+        )
+        return result.scalar_one_or_none()

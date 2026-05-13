@@ -4,7 +4,7 @@ from sqlalchemy import Column, ForeignKey, Numeric
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from database import Base
+from core.database import Base
 
 
 class ExpenseSplit(Base):

@@ -27,6 +27,7 @@ class TokenResponse(BaseModel):
 
 class UserResponse(BaseModel):
     id: UUID
+    user_code: str
     name: str
     email: EmailStr
     auth_provider: str

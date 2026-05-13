@@ -4,11 +4,10 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from config import DATABASE_URL
+from core.config import DATABASE_URL
 
 engine = create_async_engine(
     DATABASE_URL,
-    echo=True,
     pool_pre_ping=True,
     connect_args={"statement_cache_size": 0},
 )

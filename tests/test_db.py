@@ -2,7 +2,7 @@ import pytest  # type: ignore
 from sqlalchemy import text  # type: ignore
 from sqlalchemy.ext.asyncio import create_async_engine  # type: ignore
 
-from config import DATABASE_URL
+from core.config import DATABASE_URL
 
 
 def _engine():
