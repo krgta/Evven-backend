@@ -18,7 +18,7 @@ async def get_group_balances(
     user: User = Depends(get_current_user),
 ):
     service = BalanceService(db)
-    balances = await service.get_group_balances( group_id)
+    balances = await service.get_group_balances(group_id)
     return SuccessResponse(
         message="Balances fetched successfully",
         data={str(k): str(v) for k, v in balances.items()},
