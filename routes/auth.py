@@ -101,7 +101,9 @@ async def request_password(
 
 
 @router.put("/reset-password")
-async def update_password(body: ResetPasswordRequest, db: AsyncSession = Depends(get_db)):
+async def update_password(
+    body: ResetPasswordRequest, db: AsyncSession = Depends(get_db)
+):
     return await reset_password(body.token, body.password, db)
 
 
