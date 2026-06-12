@@ -15,3 +15,14 @@ celery.conf.update(
     timezone="UTC",
     enable_utc=True,
 )
+
+celery.conf.imports = (
+    "tasks.cleanup_task",
+)
+
+celery.conf.beat_schedule = {
+    "cleanup-password-reset-tokens": {
+        "task": "tasks.cleanup_task.delete_expired_used_tokens",
+        "schedule": 60.0,  # 24 hours
+    }
+}

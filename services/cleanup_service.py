@@ -5,7 +5,7 @@ from repository.reset_token_repositery import ResetRepositery
 
 
 async def _cleanup():
-    async with AsyncSessionLocal as db:
+    async with AsyncSessionLocal() as db:
         repo = ResetRepositery(db)
         await repo.delete_token()
 

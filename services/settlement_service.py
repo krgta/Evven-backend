@@ -27,4 +27,5 @@ class SettlementService:
         )
         return await self.repo.add_settlement(settlement)
 
-    # async def update_balances():
+
+        
