@@ -13,6 +13,8 @@ from routes.groups import router as groups_router
 from routes.personal_expenses import router as personal_expenses_router
 from routes.settlements import router as settlement_router
 from routes.users import router as users_router
+from routes.ghost import router as ghosts_router
+
 
 app = FastAPI(
     title="Evven API",
@@ -69,6 +71,7 @@ app.include_router(personal_expenses_router)
 app.include_router(debt_breakdown_router)
 app.include_router(balance_router)
 app.include_router(settlement_router)
+app.include_router(ghosts_router)
 
 
 @app.get("/health")
