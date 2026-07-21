@@ -11,6 +11,7 @@ from schemas.personal_expenses import (
     PersonalExpenseResponse,
     PersonalExpenseUpdate,
 )
+from models.group_expenses import PaymentMethod
 
 
 async def create_personal_expense(
@@ -27,6 +28,7 @@ async def create_personal_expense(
         category=expense_data.category,
         date=expense_data.date,
         notes=expense_data.notes,
+        payment_method=PaymentMethod(expense_data.payment_method) if expense_data.payment_method else None,
     )
 
     created_expense = await repo.create_expense(expense)
